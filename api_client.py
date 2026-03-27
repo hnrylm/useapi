@@ -24,6 +24,11 @@ def fetch_data():
             # 如果要存入 Excel (根据数据结构调整)
             # df = pd.DataFrame([data])
             # df.to_excel("api_result.xlsx", index=False)
+            print(f"rating: {data.get('starred_url')}")
+            print(f"email: {data.get('email')}")
+            msg = "Hello" + data.get('login')
+            for i in range(1,3):
+                print(f"{msg}")
         elif response.status_code == 403:
             print("访问被拒绝：可能需要 API Key 或请求太频繁。")
         else:
