@@ -2,7 +2,7 @@ import requests
 import pandas as pd
 
 # 1. 定义官方 API 链接
-url = "https://data.weather.gov.hk"
+url = "https://data.weather.gov.hk/weatherAPI/opendata/weather.php?dataType=rhrread&lang=sc"
 
 
 def save_hk_temp_to_excel():
@@ -17,7 +17,13 @@ def save_hk_temp_to_excel():
         # 4. 提取各站点的温度列表
         # 数据结构通常在 data['temperature']['data'] 下
         temp_list = data.get('temperature', {}).get('data', [])
-        
+        # 假設 data 是 response.json() 的結果
+        temp_list = data.get('temperature').get('data')
+
+        # 獲取第 2 個地點 (編號 1) 的資訊
+        place = temp_list[1].get('place') # 結果會是 "香港天文台"
+        value = temp_list[1].get('value') # 結果會是 24
+        print(f"地区：{place}, 温度：{value}")
         if not temp_list:
             print("未能获取到温度数据")
             return
