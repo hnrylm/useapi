@@ -15,8 +15,7 @@ def save_hk_temp_to_excel():
         data = response.json()
         
         # 4. 提取各站点的温度列表
-        # 数据结构通常在 data['temperature']['data'] 下
-        temp_list = data.get('temperature', {}).get('data', [])
+       
         # 假設 data 是 response.json() 的結果
         temp_list = data.get('temperature').get('data')
 
